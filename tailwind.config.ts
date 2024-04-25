@@ -1,4 +1,6 @@
+// /** @type {import('tailwindcss').Config} */
 import type { Config } from "tailwindcss";
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config = {
   darkMode: ["class"],
@@ -18,6 +20,10 @@ const config = {
       },
     },
     extend: {
+      /* Rainbow */
+      fontFamily: {
+        sans: ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -63,6 +69,18 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        /* Animasi Rainbow Rainbow */
+        text: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
+        /*  */
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -75,10 +93,16 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        text: 'text 5s ease infinite',   
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  
+  plugins: [
+    require("tailwindcss-animate"),
+    // require("tailwindcss/typography")
+  ],
+  
 } satisfies Config;
 
 export default config;
